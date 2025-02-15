@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Card</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffccd5;
+        }
+        .envelope-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .envelope {
+            width: 200px;
+            height: 150px;
+            background: #ff4d6d;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .envelope:hover {
+            transform: translateY(-5px);
+        }
+        .heart {
+            font-size: 40px;
+            color: white;
+        }
+        .letter, .survey {
+            display: none;
+            width: 300px;
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            background: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day!</h1>
+    <div class="envelope-container">
+        <div class="envelope" onclick="openLetter()">
+            <div class="heart">💌</div>
+        </div>
+    </div>
+    <div class="letter" id="letter">
+        <p>Dear Geb,</p>
+        <p>You're amazing, thank you for making my month!!</p>
+        <button onclick="startSurvey()">Next</button>
+    </div>
+    <div class="survey" id="survey">
+        <p>What's my favorite fast food?</p>
+        <button onclick="nextSurvey('McDonald’s')">McDonald's</button>
+        <button onclick="nextSurvey('Wendy’s')">Wendy's</button>
+        <button onclick="nextSurvey('Burger King')">Burger King</button>
+    </div>
+    <div class="survey" id="survey2" style="display: none;">
+        <p>What's my favorite game?</p>
+        <button onclick="nextSurvey2('Roblox')">Roblox</button>
+        <button onclick="nextSurvey2('Minecraft')">Minecraft</button>
+        <button onclick="nextSurvey2('Overwatch')">Overwatch</button>
+    </div>
+    <div class="survey" id="survey3" style="display: none;">
+        <p>Who's my favorite boy?</p>
+        <button onclick="showEnding('Geb')">Geb</button>
+        <button onclick="showEnding('Foolish')">Foolish</button>
+        <button onclick="showEnding('Epic Modded')">Modded</button>
+        <button onclick="showEnding('B Rabbit')">B Rabbit</button>
+    </div>
+    <div id="finalMessage" style="display: none;">
+        <h2>Feel free to ask me for anything on our special day :)</h2>
+    </div>
+    <script>
+        function openLetter() {
+            document.querySelector('.envelope-container').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+        }
+        function startSurvey() {
+            document.getElementById('letter').style.display = 'none';
+            document.getElementById('survey').style.display = 'block';
+        }
+        function nextSurvey(answer) {
+            let correct = answer === 'Burger King' ? "Correct!" : "Nope, it's Burger King.";
+            document.getElementById('survey').innerHTML = `<h2>${correct}</h2><button onclick='startNext()'>Next</button>`;
+        }
+        function startNext() {
+            document.getElementById('survey').style.display = 'none';
+            document.getElementById('survey2').style.display = 'block';
+        }
+        function nextSurvey2(answer) {
+            let correct = answer === 'Roblox' ? "Yep, it's Roblox!" : "Not quite, it's Roblox.";
+            document.getElementById('survey2').innerHTML = `<h2>${correct}</h2><button onclick='startNext2()'>Next</button>`;
+        }
+        function startNext2() {
+            document.getElementById('survey2').style.display = 'none';
+            document.getElementById('survey3').style.display = 'block';
+        }
+        function showEnding(answer) {
+            let correct = answer === 'Geb' ? "Of course, it's Geb!" : "Nope, it's Geb.";
+            document.getElementById('survey3').innerHTML = `<h2>${correct}</h2>`;
+            setTimeout(() => {
+                document.getElementById('finalMessage').style.display = 'block';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
